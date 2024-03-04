@@ -15,7 +15,6 @@ const Catalog = () => {
   const [brand, setBrand] = useState('');
   const [product, setProduct] = useState('');
   const isFilterApplied = Boolean(price || brand || product);
-  console.debug('isFilterApplied:', isFilterApplied);
 
   const { isLoading: isProductIDsLoading, data: productIDs = [] } = useQuery({
     queryKey: ['get-product-ids', page],
@@ -38,8 +37,6 @@ const Catalog = () => {
     queryFn: () => catalogAPI.getFilteredProductIDs(price, brand, product),
     enabled: isFilterApplied
   });
-
-  console.debug('filteredProductIDs:', filteredProductIDs);
 
   const isLoading =
     isProductIDsLoading || isFilteredProductIDsLoading || isAllIDsLoading;
