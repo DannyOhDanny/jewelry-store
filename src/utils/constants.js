@@ -13,3 +13,6 @@ export const HEADERS = {
 // Константа кол-ва элементов на странице
 
 export const PRODUCTS_PER_PAGE = 50;
+// Ошибки
+export const SERVER_ERROR = 'Ошибка при отправке запроса';
+export const MESSAGE_ERROR = 'По вашему запросу ничего не найдено';

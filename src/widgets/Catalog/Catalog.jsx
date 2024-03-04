@@ -1,19 +1,27 @@
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 
-import { PRODUCTS_PER_PAGE } from '@utils/constants';
+import {
+  PRODUCTS_PER_PAGE,
+  MESSAGE_ERROR,
+  SERVER_ERROR
+} from '@utils/constants';
 
 import catalogAPI from './api/catalogAPI';
+
 import List from './ui/List';
-import styles from './styles.module.scss';
 import Loader from './ui/Loader';
 
-const Catalog = () => {
-  const [page, setPage] = useState(1);
+import styles from './styles.module.scss';
 
+const Catalog = () => {
+  const [error, setError] = useState('');
+
+  const [page, setPage] = useState(1);
   const [price, setPrice] = useState('');
   const [brand, setBrand] = useState('');
   const [product, setProduct] = useState('');
+
   const isFilterApplied = Boolean(price || brand || product);
 
   const { isLoading: isProductIDsLoading, data: productIDs = [] } = useQuery({
@@ -41,11 +49,22 @@ const Catalog = () => {
   const isLoading =
     isProductIDsLoading || isFilteredProductIDsLoading || isAllIDsLoading;
 
+  if (allIDs.isError) {
+    setError(SERVER_ERROR);
+  }
+  if (productIDs.isError) {
+    setError(SERVER_ERROR);
+  }
+
+  if (filteredProductIDs.isError) {
+    setError(SERVER_ERROR);
+  }
   const resetFilters = () => {
     setPage(1);
     setPrice('');
     setBrand('');
     setProduct('');
+    setError('');
   };
   const totalCount = Math.ceil(allIDs.length / PRODUCTS_PER_PAGE);
 
@@ -106,6 +125,7 @@ const Catalog = () => {
             productIDs={isFilterApplied ? filteredProductIDs : productIDs}
           />
         )}
+        {error && <p>{error}</p>}
       </div>
     </>
   );

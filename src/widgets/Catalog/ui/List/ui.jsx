@@ -5,8 +5,9 @@ import catalogAPI from '../../api/catalogAPI';
 import Loader from '../Loader/ui';
 import Card from '../Card/ui';
 
-import styles from './styles.module.scss';
+import { SERVER_ERROR, MESSAGE_ERROR } from '../../../../utils/constants';
 
+import styles from './styles.module.scss';
 const List = props => {
   const { productIDs = [] } = props;
 
@@ -28,7 +29,11 @@ const List = props => {
   }
 
   if (!hasItems) {
-    return <p>По вашему запросу ничего не найдено</p>;
+    return <p>{MESSAGE_ERROR}</p>;
+  }
+
+  if (productIDs.isError) {
+    return <p>{SERVER_ERROR}</p>;
   }
 
   return (
