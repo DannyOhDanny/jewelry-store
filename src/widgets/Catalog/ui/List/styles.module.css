@@ -1,0 +1,14 @@
+.root {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  padding: 10px;
+  background-color: lightskyblue;
+  border-radius: 5px;
+}

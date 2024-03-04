@@ -1,0 +1,21 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+
+.filter {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.filterResetButton {
+  grid-column-start: 2;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  column-gap: 10px;
+}
