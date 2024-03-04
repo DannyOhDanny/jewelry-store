@@ -1,0 +1,120 @@
+@import '../../../../utils/variables.scss';
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  max-width: 1200px;
+  margin-left: 2.5rem;
+  margin-right: 2.5rem;
+  align-items: center;
+  gap: 2rem;
+  padding: 0;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  border-radius: 1rem;
+  overflow: hidden;
+  height: 375px;
+}
+
+article:nth-child(n) {
+  background-color: $firstColor;
+}
+
+article:nth-child(2n + 1) {
+  background-color: $secondColor;
+}
+article:nth-child(3n + 3) {
+  background-color: $thirdColor;
+}
+
+.cardImg {
+  width: 200px;
+  height: auto;
+  padding: 1rem 0 0 0;
+  transition: 0.5s;
+}
+.cardName {
+  position: absolute;
+  left: -25%;
+  top: 0;
+  width: 3.5rem;
+  height: 100%;
+  font-family: 'Roboto', 'Segoe UI', 'Arial', sans-serif;
+  font-weight: 400;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  text-align: center;
+  background-color: $thirdColor;
+  color: $accentTextColor;
+  font-weight: bold;
+  transition: 0.5s;
+}
+
+.cardIcon {
+  font-size: 1.5rem;
+  color: $darkColor;
+}
+.cardIcon:hover {
+  color: $accentColor;
+}
+
+.cardInfoContainer {
+  display: flex;
+  display: block;
+  text-align: center;
+  font-family: 'Roboto', 'Segor UI', 'Arial', sans-serif;
+}
+
+.cardInfoWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  width: 120px;
+}
+.cardInfo {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  transition: 0.5s;
+}
+.cardInfoBefore {
+  color: $darkColor;
+  margin-bottom: 0.25rem;
+  font-size: $textSizeCardNoramal;
+  font-weight: 400;
+}
+.cardInfoNow {
+  font-size: $textSizeCardSmall;
+  font-weight: 200;
+}
+/*Move left*/
+.card:hover {
+  box-shadow: 0 0.5rem 1rem $accentColorLightBlue;
+}
+.card:hover .cardName {
+  left: 0;
+}
+.card:hover .cardImg {
+  transform: rotate(30deg);
+  margin-left: 3.5rem;
+}
+.card:hover .cardInfo {
+  margin-left: 3.5rem;
+  padding: 0 1.5rem;
+}
+
+.error {
+  width: 250px;
+  font-family: $fontFamily;
+  font-size: $textSizeCardXS;
+  font-weight: 400;
+  color: $accentTextColor;
+}

@@ -6,7 +6,7 @@ import catalogAPI from '../../api/catalogAPI';
 
 import Loader from '../Loader/ui';
 
-import styles from './styles.module.css';
+import styles from './styles.module.scss';
 
 const List = props => {
   const { productIDs = [] } = props;
