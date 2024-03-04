@@ -1,13 +1,78 @@
-.root {
-  display: flex;
-  flex-direction: column;
-  row-gap: 20px;
+@import '/src/utils/variables.scss';
+
+:root {
+  margin: 0 auto;
+  max-width: 1280px;
+  width: 100%;
+  font-weight: 400;
+}
+
+body {
+  margin: 0 auto;
+  background-color: $baseColorWhite;
+  color: $darkColor;
+  font-family: $fontFamily;
+}
+
+h1 {
+  margin: 2rem 0 0 2rem;
+  font-size: $textSizeH1;
+  font-family: $fontFamily;
+  font-weight: 600;
+}
+
+h3 {
+  margin: 0 2.5rem;
+  font-size: $textSizeH3;
+  font-family: $fontFamily;
+  font-weight: 200;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  text-decoration: none;
+}
+
+input {
+  font-family: $fontFamily;
+  font-weight: 200;
+  font-size: $textSizeFilter;
+  color: $baseColorLightGrey;
+  border: none;
+  border-bottom: 1px solid lightgray;
+  width: 100px;
+}
+
+button {
+  width: 100px;
+  font-family: $fontFamily;
+  font-size: $textSizeCardXS;
+  font-weight: 200;
+  color: $baseColorBlack;
+  border-radius: 0.5em;
+  background-color: $baseColorWhite;
+  border: 1px solid $baseColorLightGrey;
+  opacity: 1;
+}
+
+button:hover {
+  opacity: 0.6;
+  transform: opacity 2s ease-in;
+}
+
+button:focus {
+  background-color: $baseColorBtnFocus;
 }
 
 .filter {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
+  margin: 30px 0;
+  width: 600px;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
 }
 
 .filterResetButton {
@@ -15,7 +80,44 @@
 }
 
 .pagination {
+  margin: 0 2.5rem;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   column-gap: 10px;
+}
+
+*,
+::after,
+::before {
+  box-sizing: border-box;
+}
+
+.titleShop {
+  position: relative;
+  margin: 2.5rem 0 1.5rem 2.5rem;
+}
+.titleShop::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 72px;
+  height: 2px;
+  background-color: $darkColor;
+  margin-left: 0.25rem;
+}
+.title {
+  position: relative;
+  margin: 0 2.5rem;
+  font-weight: 200;
+}
+
+.title::after {
+  content: '';
+  position: absolute;
+  top: 60%;
+  width: 20px;
+  font-weight: 200;
+  height: 0.5px;
+  background-color: $baseColorBlack;
+  margin-left: 1rem;
 }

@@ -1,0 +1,12 @@
+{
+  "allowSyntheticDefaultImports": true,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@components/*": ["src/components/*"],
+      "@utils/*": ["src/utils/*"],
+      "@assets/*": ["src/assets/*"],
+      "@widgets/*": ["src/widgets/*"]
+    }
+  }
+}

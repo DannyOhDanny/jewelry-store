@@ -1,4 +1,4 @@
-import getHashAuth from './utils/getHashAuth';
+import getHashAuth from './getHashAuth';
 
 export const BASE_URL = 'https://api.valantis.store:41000/';
 
