@@ -16,3 +16,10 @@ export const PRODUCTS_PER_PAGE = 50;
 // Ошибки
 export const SERVER_ERROR = 'Ошибка при отправке запроса';
 export const MESSAGE_ERROR = 'По вашему запросу ничего не найдено';
+
+export const MOCK_CARD = {
+  id: 1,
+  brand: '',
+  product: 'По вашему запросу ничего не найдено',
+  price: 0
+};

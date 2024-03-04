@@ -15,26 +15,38 @@ const Card = ({ id, price, product, brand }) => {
         <p>VALANTIS</p>
       </div>
       <div className={styles.cardInfo}>
-        <a href="/" className={styles.cardIcon}>
-          <ion-icon name="heart-outline"></ion-icon>
-        </a>
+        {id === 1 ? (
+          ''
+        ) : (
+          <a href="/" className={styles.cardIcon}>
+            <ion-icon name="heart-outline"></ion-icon>
+          </a>
+        )}
 
         <div className={styles.cardInfoWrapper}>
           <span className={`${styles.cardInfoContainer} ${styles.cardInfoNow}`}>
             {product}
           </span>
+          {id === 1 && (
+            <a href="/" className={styles.link}>
+              Вернуться на главную
+            </a>
+          )}
           <span className={`${styles.cardInfoContainer} ${styles.cardInfoNow}`}>
             {brand}
           </span>
           <span
             className={`${styles.cardInfoContainer} ${styles.cardInfoBefore}`}>
-            {newPrice(price)}
+            {id === 1 ? '' : newPrice(price)}
           </span>
         </div>
-
-        <a href="/" className={styles.cardIcon}>
-          <ion-icon name="cart-outline"></ion-icon>
-        </a>
+        {id === 1 ? (
+          ''
+        ) : (
+          <a href="/" className={styles.cardIcon}>
+            <ion-icon name="cart-outline"></ion-icon>
+          </a>
+        )}
       </div>
     </article>
   );

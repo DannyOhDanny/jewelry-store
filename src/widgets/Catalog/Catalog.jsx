@@ -1,16 +1,14 @@
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 
-import {
-  PRODUCTS_PER_PAGE,
-  MESSAGE_ERROR,
-  SERVER_ERROR
-} from '@utils/constants';
+import { PRODUCTS_PER_PAGE, SERVER_ERROR } from '@utils/constants';
 
 import catalogAPI from './api/catalogAPI';
 
 import List from './ui/List';
 import Loader from './ui/Loader';
+import Pagination from './ui/Pagination';
+import Form from './ui/Form';
 
 import styles from './styles.module.scss';
 
@@ -72,51 +70,18 @@ const Catalog = () => {
     <>
       <h1 className={styles.titleShop}>SHOP online</h1>
       <div className={styles.root}>
-        <form className={styles.filter}>
-          <h3 className={styles.title}>Фильтр</h3>
-
-          <input
-            type="number"
-            placeholder="Цена"
-            value={price}
-            onChange={({ target }) => setPrice(target.value)}
-          />
-          <input
-            placeholder="Бренд"
-            value={brand}
-            onChange={({ target }) => setBrand(target.value)}
-          />
-          <input
-            placeholder="Название"
-            value={product}
-            onChange={({ target }) => setProduct(target.value)}
-          />
-          {isFilterApplied && (
-            <button
-              className={styles.filterResetButton}
-              type="reset"
-              onClick={resetFilters}>
-              Сбросить
-            </button>
-          )}
-        </form>
+        <Form
+          price={price}
+          brand={brand}
+          product={product}
+          setPrice={setPrice}
+          setBrand={setBrand}
+          setProduct={setProduct}
+          resetFilters={resetFilters}
+          isFilterApplied={isFilterApplied}
+        />
         {!isFilterApplied && (
-          <div className={styles.pagination}>
-            <button
-              type="button"
-              disabled={page === 1}
-              onClick={() => setPage(prevValue => prevValue - 1)}>
-              Назад
-            </button>
-            <span>
-              {page}/{totalCount}
-            </span>
-            <button
-              type="button"
-              onClick={() => setPage(prevValue => prevValue + 1)}>
-              Вперед
-            </button>
-          </div>
+          <Pagination page={page} totalCount={totalCount} setPage={setPage} />
         )}
         {isLoading ? (
           <Loader />

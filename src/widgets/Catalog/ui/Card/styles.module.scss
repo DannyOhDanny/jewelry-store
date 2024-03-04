@@ -1,4 +1,4 @@
-@import '../../../../utils/variables.scss';
+@import '@utils/variables.scss';
 
 .card {
   position: relative;
@@ -105,5 +105,13 @@ article:nth-child(3n + 3) {
   font-family: $fontFamily;
   font-size: $textSizeCardXS;
   font-weight: 400;
+  color: $accentTextColor;
+}
+
+.link {
+  text-align: center;
+  font-weight: 400;
+  font-family: $fontFamily;
+  font-size: $textSizeCardSmall;
   color: $accentTextColor;
 }

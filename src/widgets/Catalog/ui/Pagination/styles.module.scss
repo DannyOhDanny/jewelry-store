@@ -1,0 +1,8 @@
+@import '@utils/variables.scss';
+
+.pagination {
+  margin: 0 2.5rem;
+  display: flex;
+  justify-content: flex-end;
+  column-gap: 10px;
+}

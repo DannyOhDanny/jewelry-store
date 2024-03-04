@@ -1,11 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
 
+import { SERVER_ERROR, MOCK_CARD } from '@utils/constants';
+
 import catalogAPI from '../../api/catalogAPI';
 
 import Loader from '../Loader/ui';
 import Card from '../Card/ui';
-
-import { SERVER_ERROR, MESSAGE_ERROR } from '../../../../utils/constants';
 
 import styles from './styles.module.scss';
 const List = props => {
@@ -29,7 +29,14 @@ const List = props => {
   }
 
   if (!hasItems) {
-    return <p>{MESSAGE_ERROR}</p>;
+    return (
+      <Card
+        key={MOCK_CARD.id}
+        product={MOCK_CARD.product}
+        price={MOCK_CARD.price}
+        id={MOCK_CARD.id}
+        brand={MOCK_CARD.brand}></Card>
+    );
   }
 
   if (productIDs.isError) {

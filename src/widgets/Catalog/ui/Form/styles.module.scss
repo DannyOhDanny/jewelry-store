@@ -1,0 +1,13 @@
+@import '@utils/variables.scss';
+
+.filter {
+  margin: 30px 0;
+  width: 600px;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.filterResetButton {
+  grid-column-start: 2;
+}
