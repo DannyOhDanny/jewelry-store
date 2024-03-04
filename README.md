@@ -20,6 +20,7 @@
 <div> 
 <img src="https://img.shields.io/badge/javascript-%23404d59.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E" alt="JavaScript Badge" />
 <img src="https://img.shields.io/badge/react-%23404d59.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB" alt="React Badge" />
+<img src="https://img.shields.io/badge/axios-%23404d59.svg?style=for-the-badge&logo=axios&logoColor=%2361DAFB" alt="Axios Badge" />
 <img src="https://img.shields.io/badge/css3-%23404d59.svg?style=for-the-badge&logo=css3&logoColor=lightblue" alt="CSS3 Badge" />
 <img src="https://img.shields.io/badge/SASS-%23404d59.svg?style=for-the-badge&logo=SASS&logoColor=hotpink" alt="SASS Badge" />
 <img src="https://img.shields.io/badge/html5-%23404d59.svg?style=for-the-badge&logo=html5&logoColor=orange" alt="HTML5 Badge" />
