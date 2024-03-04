@@ -86,19 +86,3 @@ button:focus {
   background-color: $darkColor;
   margin-left: 0.25rem;
 }
-.title {
-  position: relative;
-  margin: 0 2.5rem;
-  font-weight: 200;
-}
-
-.title::after {
-  content: '';
-  position: absolute;
-  top: 60%;
-  width: 20px;
-  font-weight: 200;
-  height: 0.5px;
-  background-color: $baseColorBlack;
-  margin-left: 1rem;
-}
