@@ -1,3 +1,3 @@
-import List from './ui'
+import List from './ui';
 
-export default List
+export default List;

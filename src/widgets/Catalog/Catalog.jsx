@@ -1,51 +1,73 @@
-import { useState } from 'react'
-import { useQuery } from '@tanstack/react-query'
-import catalogAPI from './api/catalogAPI'
-import { PRODUCTS_PER_PAGE } from '../../constants'
-import List from './ui/List'
-import styles from './styles.module.css'
+import { useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
+
+import { PRODUCTS_PER_PAGE } from '../../constants';
+
+import catalogAPI from './api/catalogAPI';
+import List from './ui/List';
+import styles from './styles.module.css';
+import Loader from './ui/Loader';
 
 const Catalog = () => {
-  const [page, setPage] = useState(1)
+  const [page, setPage] = useState(1);
 
-
-  const [price, setPrice] = useState('')
-  const [brand, setBrand] = useState('')
-  const [product, setProduct] = useState('')
-  const isFilterApplied = Boolean(price || brand || product)
-  console.debug('isFilterApplied:', isFilterApplied)
+  const [price, setPrice] = useState('');
+  const [brand, setBrand] = useState('');
+  const [product, setProduct] = useState('');
+  const isFilterApplied = Boolean(price || brand || product);
+  console.debug('isFilterApplied:', isFilterApplied);
 
   const { isLoading: isProductIDsLoading, data: productIDs = [] } = useQuery({
     queryKey: ['get-product-ids', page],
-    queryFn: () => catalogAPI.getProductIDs((page - 1) * PRODUCTS_PER_PAGE, PRODUCTS_PER_PAGE),
-  })
+    queryFn: () =>
+      catalogAPI.getProductIDs(
+        (page - 1) * PRODUCTS_PER_PAGE,
+        PRODUCTS_PER_PAGE
+      )
+  });
+  const { isLoading: isAllIDsLoading, data: allIDs = [] } = useQuery({
+    queryKey: ['get-product-ids'],
+    queryFn: () => catalogAPI.getAllProductIDs()
+  });
 
-  const { isLoading: isFilteredProductIDsLoading, data: filteredProductIDs = [] } = useQuery({
+  const {
+    isLoading: isFilteredProductIDsLoading,
+    data: filteredProductIDs = []
+  } = useQuery({
     queryKey: ['get-filtered-product-ids', price, brand, product],
     queryFn: () => catalogAPI.getFilteredProductIDs(price, brand, product),
-    enabled: isFilterApplied,
-  })
+    enabled: isFilterApplied
+  });
 
-  console.debug('filteredProductIDs:', filteredProductIDs)
+  console.debug('filteredProductIDs:', filteredProductIDs);
 
-  const isLoading = isProductIDsLoading || isFilteredProductIDsLoading
+  const isLoading =
+    isProductIDsLoading || isFilteredProductIDsLoading || isAllIDsLoading;
+
+  const resetFilters = () => {
+    setPage(1);
+    setPrice('');
+    setBrand('');
+    setProduct('');
+  };
+  const totalCount = Math.ceil(allIDs.length / PRODUCTS_PER_PAGE);
 
   return (
     <div className={styles.root}>
       <form className={styles.filter}>
         <input
           type="number"
-          placeholder="Price"
+          placeholder="Цена"
           value={price}
           onChange={({ target }) => setPrice(target.value)}
         />
         <input
-          placeholder="Brand"
+          placeholder="Бренд"
           value={brand}
           onChange={({ target }) => setBrand(target.value)}
         />
         <input
-          placeholder="Name"
+          placeholder="Название"
           value={product}
           onChange={({ target }) => setProduct(target.value)}
         />
@@ -53,14 +75,8 @@ const Catalog = () => {
           <button
             className={styles.filterResetButton}
             type="reset"
-            onClick={() => {
-              setPage(1)
-              setPrice('')
-              setBrand('')
-              setProduct('')
-            }}
-          >
-            Reset filters
+            onClick={resetFilters}>
+            Сбросить
           </button>
         )}
       </form>
@@ -69,24 +85,26 @@ const Catalog = () => {
           <button
             type="button"
             disabled={page === 1}
-            onClick={() => setPage((prevValue) => prevValue - 1)}
-          >
-            Prev page
+            onClick={() => setPage(prevValue => prevValue - 1)}>
+            Назад
           </button>
-          <span>{page}</span>
+          <span>
+            {page}/{totalCount}
+          </span>
           <button
             type="button"
-            onClick={() => setPage((prevValue) => prevValue + 1)}
-          >
-            Next page
+            onClick={() => setPage(prevValue => prevValue + 1)}>
+            Вперед
           </button>
         </div>
       )}
-      {isLoading ? <div>Loading...</div> : (
+      {isLoading ? (
+        <Loader />
+      ) : (
         <List productIDs={isFilterApplied ? filteredProductIDs : productIDs} />
       )}
     </div>
-  )
-}
+  );
+};
 
-export default Catalog
+export default Catalog;
