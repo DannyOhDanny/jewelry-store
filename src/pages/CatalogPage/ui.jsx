@@ -1,9 +1,7 @@
-import Catalog from '../../widgets/Catalog'
+import Catalog from '../../widgets/Catalog';
 
 const CatalogPage = () => {
-  return (
-    <Catalog />
-  )
-}
+  return <Catalog />;
+};
 
-export default CatalogPage
+export default CatalogPage;

@@ -1,3 +1,3 @@
-import CatalogPage from './ui'
+import CatalogPage from './ui';
 
-export default CatalogPage
+export default CatalogPage;
