@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { capitalizedQuery } from '@utils/functions.js';
 
 import { BASE_URL, HEADERS } from '/src/utils/constants';
 
@@ -30,11 +31,11 @@ const catalogAPI = {
     }
 
     if (brand) {
-      params.brand = brand;
+      params.brand = capitalizedQuery(brand);
     }
 
     if (product) {
-      params.product = product;
+      params.product = capitalizedQuery(product);
     }
     return axios
       .post(BASE_URL, {

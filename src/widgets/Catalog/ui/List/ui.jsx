@@ -8,6 +8,7 @@ import Loader from '../Loader/ui';
 import Card from '../Card/ui';
 
 import styles from './styles.module.scss';
+
 const List = props => {
   const { productIDs = [] } = props;
 
@@ -16,6 +17,7 @@ const List = props => {
     queryFn: () => catalogAPI.getItems(productIDs),
     select: items => {
       const mappedItems = new Map(items.map(item => [item.id, item]));
+
       const uniqueItems = [...mappedItems.values()];
 
       return uniqueItems;
