@@ -28,7 +28,7 @@ const Card = ({ id, price, product, brand }) => {
             {product}
           </span>
           {id === 1 && (
-            <a href="/" className={styles.link}>
+            <a href="/jewelry-store/" className={styles.link}>
               Вернуться на главную
             </a>
           )}

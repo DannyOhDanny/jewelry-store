@@ -86,3 +86,12 @@ button:focus {
   background-color: $darkColor;
   margin-left: 0.25rem;
 }
+.header {
+  display: flex;
+  flex-direction: column;
+}
+.icon {
+  margin: 2rem 2.5rem 0 2.5rem;
+
+  width: 30px;
+}

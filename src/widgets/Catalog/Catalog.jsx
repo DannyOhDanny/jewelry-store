@@ -3,6 +3,8 @@ import { useQuery } from '@tanstack/react-query';
 
 import { PRODUCTS_PER_PAGE, SERVER_ERROR } from '@utils/constants';
 
+import logo from '../../assets/sketch_6423309.svg';
+
 import catalogAPI from './api/catalogAPI';
 
 import List from './ui/List';
@@ -68,7 +70,12 @@ const Catalog = () => {
 
   return (
     <>
-      <h1 className={styles.titleShop}>SHOP online</h1>
+      <header className={styles.header}>
+        <a href="/jewelry-store">
+          <img src={logo} className={styles.icon} />
+        </a>
+        <h1 className={styles.titleShop}> SHOP online</h1>
+      </header>
       <div className={styles.root}>
         <Form
           price={price}
