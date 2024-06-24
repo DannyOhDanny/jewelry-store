@@ -26,7 +26,14 @@ function newPrice(price) {
 export default newPrice;
 
 function generateJewelryArray() {
-  const jewelryTypes = ['Часы', 'Браслет', 'Серьги', 'Колье', 'Подвеска'];
+  const jewelryTypes = [
+    'Часы',
+    'Браслет',
+    'Серьги',
+    'Колье',
+    'Подвеска',
+    'Кольцо'
+  ];
   const brands = ['Tiffany&Co', 'Bucheron', 'Piaget', 'Van Cliff'];
 
   const jewelryArray = [];

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 
 import { PRODUCTS_PER_PAGE, SERVER_ERROR } from '@utils/constants';
@@ -22,7 +22,7 @@ const Catalog = () => {
   const [price, setPrice] = useState('');
   const [brand, setBrand] = useState('');
   const [product, setProduct] = useState('');
-  console.log(price, brand, product);
+
   const isFilterApplied = Boolean(price || brand || product);
 
   const { isLoading: isProductIDsLoading, data: productIDs = [] } = useQuery({
@@ -67,7 +67,7 @@ const Catalog = () => {
     setProduct('');
     setError('');
   };
-  const totalCount = Math.ceil(allIDs.length / PRODUCTS_PER_PAGE);
+  //const totalCount = Math.ceil(allIDs.length / PRODUCTS_PER_PAGE);
 
   const filterItems = () => {
     let filteredItems = jewelryObjects;
@@ -92,7 +92,24 @@ const Catalog = () => {
   };
 
   const filteredItems = filterItems();
-  console.log(filteredItems, 'filter');
+
+  const startIndex = (page - 1) * PRODUCTS_PER_PAGE;
+  const endIndex = startIndex + PRODUCTS_PER_PAGE;
+  const itemsToDisplay = filteredItems.slice(startIndex, endIndex);
+  const itemsToDisplayDef = jewelryObjects.slice(startIndex, endIndex);
+
+  const totalCountFiltered = Math.ceil(
+    jewelryObjects.length / PRODUCTS_PER_PAGE
+  );
+  const filteredCountFiltered = Math.ceil(
+    filteredItems.length / PRODUCTS_PER_PAGE
+  );
+
+  useEffect(() => {
+    if (isFilterApplied) {
+      setPage(1);
+    }
+  }, [isFilterApplied]);
 
   return (
     <>
@@ -113,14 +130,27 @@ const Catalog = () => {
           resetFilters={resetFilters}
           isFilterApplied={isFilterApplied}
         />
-        {!isFilterApplied && (
-          <Pagination page={page} totalCount={totalCount} setPage={setPage} />
-        )}
+        {/* {!isFilterApplied && (
+          <Pagination
+            page={page}
+            totalCount={
+              filteredItems ? filteredCountFiltered : totalCountFiltered
+            }
+            setPage={setPage}
+          />
+        )} */}
+        <Pagination
+          page={page}
+          totalCount={
+            isFilterApplied ? filteredCountFiltered : totalCountFiltered
+          }
+          setPage={setPage}
+        />
         {isLoading ? (
           <Loader />
         ) : (
           <List
-            filteredItems={filteredItems}
+            filteredItems={isFilterApplied ? itemsToDisplay : itemsToDisplayDef}
             productIDs={isFilterApplied ? filteredProductIDs : productIDs}
           />
         )}
