@@ -3,14 +3,13 @@ import { useQuery } from '@tanstack/react-query';
 import { SERVER_ERROR, MOCK_CARD } from '@utils/constants';
 
 import catalogAPI from '../../api/catalogAPI';
-
 import Loader from '../Loader/ui';
 import Card from '../Card/ui';
 
 import styles from './styles.module.scss';
 
 const List = props => {
-  const { productIDs = [] } = props;
+  const { productIDs = [] } = props.productIDs;
 
   const { isLoading, data: items = [] } = useQuery({
     queryKey: ['catalog-get-items', productIDs],
@@ -30,7 +29,9 @@ const List = props => {
     return <Loader></Loader>;
   }
 
-  if (!hasItems) {
+  const filtered = props.filteredItems;
+
+  if (!hasItems && filtered.length === 0) {
     return (
       <Card
         key={MOCK_CARD.id}
@@ -47,14 +48,24 @@ const List = props => {
 
   return (
     <ul className={styles.grid}>
-      {items.map(({ product, price, id, brand }) => (
-        <Card
-          key={id}
-          product={product}
-          price={price}
-          id={id}
-          brand={brand}></Card>
-      ))}
+      {items &&
+        items.map(({ product, price, id, brand }) => (
+          <Card
+            key={id}
+            product={product}
+            price={price}
+            id={id}
+            brand={brand}></Card>
+        ))}
+      {filtered &&
+        filtered.map(({ product, price, id, brand }) => (
+          <Card
+            key={id}
+            product={product}
+            price={price}
+            id={id}
+            brand={brand}></Card>
+        ))}
     </ul>
   );
 };

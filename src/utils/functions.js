@@ -24,3 +24,34 @@ function newPrice(price) {
   }).format(price);
 }
 export default newPrice;
+
+function generateJewelryArray() {
+  const jewelryTypes = ['Часы', 'Браслет', 'Серьги', 'Колье', 'Подвеска'];
+  const brands = ['Tiffany&Co', 'Bucheron', 'Piaget', 'Van Cliff'];
+
+  const jewelryArray = [];
+
+  for (let i = 0; i < 1000; i++) {
+    const selectedJewelryType =
+      jewelryTypes[Math.floor(Math.random() * jewelryTypes.length)];
+    const selectedBrand = brands[Math.floor(Math.random() * brands.length)];
+
+    const product = {
+      product: `${selectedJewelryType} ${selectedBrand}`,
+      price: (Math.floor(Math.random() * 100000) + 1).toString(),
+      id: i + 1,
+      brand: selectedBrand
+    };
+
+    jewelryArray.push(product);
+  }
+
+  return jewelryArray;
+}
+
+export const jewelryObjects = generateJewelryArray().map(obj => ({
+  ...obj,
+  product: `${obj.product}`
+}));
+
+console.log(jewelryObjects);

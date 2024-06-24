@@ -3,6 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 
 import { PRODUCTS_PER_PAGE, SERVER_ERROR } from '@utils/constants';
 
+import { jewelryObjects } from '../../utils/functions';
 import logo from '../../assets/sketch_6423309.svg';
 
 import catalogAPI from './api/catalogAPI';
@@ -21,7 +22,7 @@ const Catalog = () => {
   const [price, setPrice] = useState('');
   const [brand, setBrand] = useState('');
   const [product, setProduct] = useState('');
-
+  console.log(price, brand, product);
   const isFilterApplied = Boolean(price || brand || product);
 
   const { isLoading: isProductIDsLoading, data: productIDs = [] } = useQuery({
@@ -68,6 +69,31 @@ const Catalog = () => {
   };
   const totalCount = Math.ceil(allIDs.length / PRODUCTS_PER_PAGE);
 
+  const filterItems = () => {
+    let filteredItems = jewelryObjects;
+
+    if (price) {
+      const priceString = price.toString();
+      filteredItems = filteredItems.filter(item =>
+        item.price.toString().startsWith(priceString)
+      );
+    }
+    if (brand) {
+      filteredItems = filteredItems.filter(item => item.brand === brand);
+    }
+
+    if (product) {
+      filteredItems = filteredItems.filter(item =>
+        item.product.toLowerCase().includes(product.toLowerCase())
+      );
+    }
+    filteredItems.sort((a, b) => a.price - b.price);
+    return filteredItems;
+  };
+
+  const filteredItems = filterItems();
+  console.log(filteredItems, 'filter');
+
   return (
     <>
       <header className={styles.header}>
@@ -94,6 +120,7 @@ const Catalog = () => {
           <Loader />
         ) : (
           <List
+            filteredItems={filteredItems}
             productIDs={isFilterApplied ? filteredProductIDs : productIDs}
           />
         )}
