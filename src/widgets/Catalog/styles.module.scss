@@ -1,7 +1,5 @@
 @import '@utils/variables.scss';
 
-//  @TODO : мобильная версия
-
 :root {
   margin: 0 auto;
   max-width: 1280px;
@@ -29,6 +27,7 @@ h3 {
   font-family: $fontFamily;
   font-weight: 200;
 }
+
 img {
   max-width: 100%;
   height: auto;
@@ -75,11 +74,33 @@ button:focus {
   box-sizing: border-box;
 }
 
-.titleShop {
-  position: relative;
-  margin: 2.5rem 0 1.5rem 2.5rem;
+.header {
+  display: flex;
+  flex-direction: column;
 }
-.titleShop::after {
+
+.link {
+  @media screen and (max-width: 920px) {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.icon {
+  margin: 4rem 2.5rem 0 2.5rem;
+  width: 30px;
+}
+
+.title {
+  position: relative;
+  margin: 3rem 0 1.5rem 2.5rem;
+
+  @media screen and (max-width: 920px) {
+    margin: 2.5rem auto;
+  }
+}
+
+.title::after {
   content: '';
   position: absolute;
   top: 50%;
@@ -87,13 +108,8 @@ button:focus {
   height: 2px;
   background-color: $darkColor;
   margin-left: 0.25rem;
-}
-.header {
-  display: flex;
-  flex-direction: column;
-}
-.icon {
-  margin: 2rem 2.5rem 0 2.5rem;
 
-  width: 30px;
+  @media screen and (max-width: 920px) {
+    background-color: transparent;
+  }
 }

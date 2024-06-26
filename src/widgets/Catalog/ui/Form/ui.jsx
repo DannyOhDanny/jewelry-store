@@ -21,11 +21,13 @@ const Form = ({
         onChange={({ target }) => setPrice(target.value)}
       />
       <input
+        type="text"
         placeholder="Бренд"
         value={brand}
         onChange={({ target }) => setBrand(target.value)}
       />
       <input
+        type="text"
         placeholder="Название"
         value={product}
         onChange={({ target }) => setProduct(target.value)}

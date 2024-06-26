@@ -114,10 +114,12 @@ const Catalog = () => {
   return (
     <>
       <header className={styles.header}>
-        <a href="https://dannyohdanny.github.io/jewelry-store/">
+        <a
+          href="https://dannyohdanny.github.io/jewelry-store/"
+          className={styles.link}>
           <img src={logo} className={styles.icon} />
         </a>
-        <h1 className={styles.titleShop}>SHOP online</h1>
+        <h1 className={styles.title}>SHOP online</h1>
       </header>
       <div className={styles.root}>
         <Form

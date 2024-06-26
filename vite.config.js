@@ -2,6 +2,7 @@ import path from 'path';
 
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import autoprefixer from 'autoprefixer';
 
 // console.log(path.resolve(__dirname, 'src/assets'));
 // console.log(path.resolve(__dirname, 'src/utils'));
@@ -17,6 +18,11 @@ export default defineConfig({
       '@components': path.resolve(__dirname, 'src/components'),
       '@utils': path.resolve(__dirname, 'src/utils'),
       '@widgets': path.resolve(__dirname, 'src/widgets')
+    }
+  },
+  css: {
+    postcss: {
+      plugins: [autoprefixer]
     }
   }
 });
