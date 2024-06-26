@@ -60,5 +60,3 @@ export const jewelryObjects = generateJewelryArray().map(obj => ({
   ...obj,
   product: `${obj.product}`
 }));
-
-console.log(jewelryObjects);

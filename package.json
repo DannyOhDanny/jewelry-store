@@ -5,13 +5,15 @@
   "type": "module",
   "homepage": "https://dannyohdanny.github.io/jewelry-store/",
   "scripts": {
+    "test": "echo \"Test script ran successfully\"",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "lint:fix": "eslint --fix --ext .js,.jsx .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "prepare": "husky"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.24.1",
@@ -32,11 +34,17 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
     "gh-pages": "^6.1.1",
+    "husky": "^9.0.11",
     "postcss": "^8.4.38",
     "postcss-preset-env": "^9.5.14",
     "vite": "^5.1.4"
   },
   "browserslist": [
     "since 2015"
-  ]
+  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "eslint src"
+    }
+  }
 }
